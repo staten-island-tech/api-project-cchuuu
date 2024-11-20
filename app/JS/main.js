@@ -9,8 +9,7 @@ async function getData() {
       throw new Error(response);
     } else {
       const data = await response.json();
-      console.log(data);
-      console.log(data.data.shopData);
+      displayCards(data);
     }
   } catch (error) {
     console.log(error);
@@ -22,14 +21,14 @@ function displayCards(data) {
   const apiData = data.data;
 
   apiData.forEach((Weapon) => {
+    const cost = Weapon.shopData ? Weapon.shopData.cost : "N/A";
     DOMselectors.container.insertAdjacentHTML(
       "beforeend",
       `
         <div class="card w-96 bg-base-100 shadow-xl p-4 m-4 rounded-xl border-2 border-black">
-          <figure><img src="${Weapon.displayIcon}" alt="${Weapon.displayName}" class="object-contain w-full h-48" /></figure>
-          <div class="card-body">
             <h2 class="card-title">${Weapon.displayName}</h2>
-            <p>Cost: $${Weapon.shopData.cost}</p>
+            <img src="${Weapon.displayIcon}" alt="${Weapon.displayName}" class="object-contain w-full h-48" />
+            <p>Cost: ${cost}</p>
           </div>
         </div>
       `
