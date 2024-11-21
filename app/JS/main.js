@@ -25,11 +25,11 @@ function displayCards(data) {
     DOMselectors.container.insertAdjacentHTML(
       "beforeend",
       `
-        <div class="card w-96 bg-base-100 shadow-xl p-4 m-4 rounded-xl border-2 border-black">
+        <div class="card w-1/5 h-[20vw] bg-red-500 rounded-3xl flex flex-col items-center justify-evenly m-8 border-2 border-black">
           <div class="card-body">
             <h2 class="card-title text-center font-semibold">${Weapon.displayName}</h2>
             <img src="${Weapon.displayIcon}" alt="${Weapon.displayName}" class="object-contain w-full h-48 rounded-lg shadow-md"/>
-            <p class="mt-2 text-center">Cost: $${cost}</p>
+            <h5 class="mt-2 text-center">Cost: $${cost}</h5>
           </div>
         </div>
       `
