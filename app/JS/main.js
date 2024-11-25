@@ -16,7 +16,7 @@ async function getData() {
     alert("Sorry, weapons are not loaded.");
   }
 }
-
+getData();
 function displayCards(data) {
   const apiData = data.data;
 
@@ -30,6 +30,10 @@ function displayCards(data) {
             <h2 class="cardtitle text-center font-semibold">${Weapon.displayName}</h2>
             <img src="${Weapon.displayIcon}" alt="${Weapon.displayName}" class="object-contain w-full h-48 rounded-lg shadow-md"/>
             <h5 class="mt-2 text-center">Cost: $${cost}</h5>
+            <form>
+            <button class="skinsBtn bg-orange-100 rounded-lg w-[6vw] border-black border-2">Skins</button>
+            <button class="statsBtn bg-orange-100 rounded-lg w-[6vw] border-black border-2">Stats</button>
+            </form>
           </div>
         </div>
       `
@@ -37,4 +41,4 @@ function displayCards(data) {
   });
 }
 
-getData();
+function showSkins() {}
