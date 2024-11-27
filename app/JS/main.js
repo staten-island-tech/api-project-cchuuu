@@ -16,7 +16,12 @@ async function getData() {
   }
 }
 getData();
+
+function clear() {
+  DOMselectors.container.innerHTML = "";
+}
 function displayCards(data, weapons) {
+  clear();
   const apiData = weapons || data.data;
 
   apiData.forEach((weapon) => {
@@ -24,10 +29,10 @@ function displayCards(data, weapons) {
     DOMselectors.container.insertAdjacentHTML(
       "beforeend",
       `
-        <div class="card w-1/5 h-[20vw] bg-red-500 rounded-3xl flex flex-col items-center justify-evenly m-8 border-2 border-black">
+        <div class="card w-1/5 h-[20vw] bg-red-500 rounded-3xl flex flex-col items-center justify-evenly m-8 border-4 border-black">
           <div class="card-body">
             <h2 class="cardtitle text-center font-bold text-xl">${weapon.displayName}</h2>
-            <img src="${weapon.displayIcon}" alt="${weapon.displayName}" class="object-contain w-full h-48 rounded-lg shadow-md"/>
+            <img src="${weapon.displayIcon}" alt="${weapon.displayName}" class="object-contain w-full h-48 rounded-lg shadow-md border-black border-2"/>
             <h5 class="mt-2 text-center font-bold">Cost: $${cost}</h5>
             <form>
             <button class="skinsBtn bg-orange-100 rounded-lg w-[6vw] border-black border-2">Skins</button>
@@ -40,10 +45,11 @@ function displayCards(data, weapons) {
   });
 }
 
-function filterGuns(data, category) {
+function filterGuns(data, selectedCategory) {
   const apiData = data.data;
-  const category = weapon.shopData ? weapon.shopData.category : "N/A";
-  return apiData.filter((weapon) => weapon.shopData.category === category);
+  return apiData.filter(
+    (weapon) => weapon.shopData?.category === selectedCategory
+  );
 }
 
 function displayCardsAndFilter(data) {
@@ -71,4 +77,8 @@ function displayCardsAndFilter(data) {
     const shotguns = filterGuns(data, "Shotguns");
     displayCards(data, shotguns);
   });
+}
+
+function skins(data) {
+  const apiData = data.data;
 }
